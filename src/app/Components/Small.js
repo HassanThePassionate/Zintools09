@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import React, { useState } from "react";
 import Image from "next/image";
@@ -98,7 +99,7 @@ const Small = () => {
       <ul className="small-list">
         {data.map((item, index) => (
           <li key={index}>
-            <Image src={item.src} alt={item.text} width={20} height={20} />
+            <Image src={item.image} alt="image" width={20} height={20} />
             <p className="paras">{item.text}</p>
           </li>
         ))}
