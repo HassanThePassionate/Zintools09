@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/swiper-bundle.css";
 import { Navigation } from "swiper/modules";
 import "swiper/css/navigation";
-import Bookmark from "@/assets/icons/Bookmark";
+// import Bookmark from "@/assets/icons/Bookmark";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addBookmark, removeBookmark } from "../reducer/bookmarkSlice";
@@ -131,11 +131,35 @@ const Slider = (props) => {
                     onClick={() => clickBookmark(e.id, e)}
                   >
                     {bookMarks.some((item) => item.id === e.id) ? (
-                      <Bookmark
-                        fill={props.mode === "dark" ? "white" : "black"}
-                      />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="23"
+                        height="23"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        style={{
+                          fill: props.mode === "dark" ? "white" : "black",
+                        }}
+                      >
+                        <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path>
+                      </svg>
                     ) : (
-                      <Bookmark />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="23"
+                        height="23"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path>
+                      </svg>
                     )}
                   </div>
                   <Link
