@@ -80,7 +80,7 @@ const Navbar = (props) => {
         className={`header ${props.mode === "dark" ? "dark-nav" : "header"}`}
       >
         <div className="container">
-          <Link href="index.html" className="logo">
+          <Link href="/" className="logo">
             <Logo />
           </Link>
 

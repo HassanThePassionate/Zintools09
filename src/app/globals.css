@@ -351,6 +351,7 @@ pre {
 }
 .svg {
   height: 20px;
+  display: none;
 }
 
 .nav-btn {
@@ -705,6 +706,9 @@ pre {
     margin-top: 1rem;
     flex-basis: calc(33% - 8px);
   }
+  .svg {
+    display: grid;
+  }
   .navbar {
     position: fixed;
     display: flex;
@@ -877,7 +881,7 @@ pre {
 }
 @media screen and (max-width: 390px) {
   .navbar {
-    width: 24.3rem;
+    width: 100%;
   }
 }
 /* ----------------------------------------------------Dark Mode----------------------------------------------------------------------------------------*/
