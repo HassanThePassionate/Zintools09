@@ -6,19 +6,14 @@ import Link from "next/link";
 import { addBookmark, removeBookmark } from "../reducer/bookmarkSlice";
 const Converter = ({ mode }) => {
   const dispatch = useDispatch();
-  const bookmarks = useSelector((state) => state.bookmark.items);
+  const bookMarks = useSelector((state) => state.bookmark.items);
 
-  const clickBookmark = (id, item) => {
-    if (bookmarks.some((bookmark) => bookmark.id === id)) {
+  const clickBookmark = (id, e) => {
+    if (bookMarks.some((item) => item.id === id)) {
       dispatch(removeBookmark(id));
     } else {
       dispatch(
-        addBookmark({
-          id: id,
-          title: item.title,
-          des: item.des,
-          image: item.image,
-        })
+        addBookmark({ id: id, title: e.title, des: e.des, image: e.image })
       );
     }
   };
@@ -80,40 +75,52 @@ const Converter = ({ mode }) => {
         <section className="container slider">
           <h2>Convert from PDF</h2>
           <div className="grid">
-            {data.map((item, index) => (
+            {data.map((e, index) => (
               <div className="relate" key={index}>
                 <div
                   className="btn-book"
-                  onClick={() => clickBookmark(item.id, item)}
+                  onClick={() => clickBookmark(e.id, e)}
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="23"
-                    height="23"
-                    viewBox="0 0 24 24"
-                    fill={
-                      bookmarks.some((bookmark) => bookmark.id === item.id)
-                        ? "black"
-                        : "white"
-                    }
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path>
-                  </svg>
+                  {bookMarks.some((item) => item.id === e.id) ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="23"
+                      height="23"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      style={{ fill: mode === "dark" ? "white" : "black" }}
+                    >
+                      <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path>
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="23"
+                      height="23"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path>
+                    </svg>
+                  )}
                 </div>
-                <Link href={item.url} className="card">
+                <Link href={e.url} className="card">
                   <Image
-                    src={item.image}
+                    src={e.image}
                     alt=""
                     width={65}
                     height={65}
                     className="card-img"
                   />
-                  <h3>{item.title}</h3>
-                  <p>{item.des}</p>
+                  <h3>{e.title}</h3>
+                  <p>{e.des}</p>
                 </Link>
               </div>
             ))}
